@@ -82,7 +82,7 @@
 				{
                     "comment": "assignment operators",
                     "name": "keyword.operator.assignment.blang",
-                    "match": "(\\+=|-=|\\*=|/=|%=|or=|and=|<<=|>>=)"
+                    "match": "(\\+=|-=|\\*=|/=|%=|or=|and=|bls=|brs=|band=|bor=|bxor=)"
                 },
 				{
                     "comment": "single equal",
@@ -92,7 +92,12 @@
 				{
                     "comment": "comparison operators",
                     "name": "keyword.operator.comparison.blang",
-                    "match": "(=(=)?(?!>)|!=|<=|(?<!=)>=)"
+                    "match": "(=(=)?(?!>)|!=|<=|~~|!~|(?<!=)>=)"
+                },
+				{
+                    "comment": "binary operators",
+                    "name": "keyword.operator.comparison.blang",
+                    "match": "(band|bor|bxor|bls|brs|band|bor|bxor|bnot)"
                 },
 				{
                     "comment": "math operators",

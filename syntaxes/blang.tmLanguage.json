@@ -1,0 +1,322 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Blang",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#block-comments"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#types"
+		},
+		{
+			"include": "#lvariables"
+		},
+		{
+			"include": "#variables"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.blang",
+					"match": "\\b(if|elsif|else|loop|while|for|return|from|yield)\\b"
+				},
+				{
+					"comment": "storage keywords",
+					"name": "keyword.other.blang storage.type.blang",
+					"match": "\\b(extern|let)\\b"
+				},
+				{
+                    "comment": "const keyword",
+                    "name": "storage.modifier.blang",
+                    "match": "\\b(const)\\b"
+                },
+				{
+                    "comment": "enum keyword",
+                    "name": "keyword.declaration.enum.blang storage.type.blang",
+                    "match": "\\b(enum)\\b"
+                },
+                {
+                    "comment": "spec keyword",
+                    "name": "keyword.declaration.spec.blang storage.type.blang",
+                    "match": "\\b(spec)\\b"
+                },
+                {
+                    "comment": "struct keyword",
+                    "name": "keyword.declaration.struct.blang storage.type.blang",
+                    "match": "\\b(struct)\\b"
+                },
+				{
+                    "comment": "other keywords",
+                    "name": "keyword.other.blang",
+                    "match": "\\b(as|impl|pub|sizeof|use)\\b"
+                },
+				{
+                    "comment": "fn",
+                    "name": "keyword.other.fn.blang",
+                    "match": "\\bfn\\b"
+                },
+				{
+                    "comment": "mut",
+                    "name": "storage.modifier.mut.blang",
+                    "match": "\\bmut\\b"
+                },
+				{
+                    "comment": "logical operators",
+                    "name": "keyword.operator.logical.blang",
+                    "match": "(and|or|!)(?!=)"
+                },
+				{
+                    "comment": "assignment operators",
+                    "name": "keyword.operator.assignment.blang",
+                    "match": "(\\+=|-=|\\*=|/=|%=|or=|and=|<<=|>>=)"
+                },
+				{
+                    "comment": "single equal",
+                    "name": "keyword.operator.assignment.equal.blang",
+                    "match": "(?<![<>])=(?!=|>)"
+                },
+				{
+                    "comment": "comparison operators",
+                    "name": "keyword.operator.comparison.blang",
+                    "match": "(=(=)?(?!>)|!=|<=|(?<!=)>=)"
+                },
+				{
+                    "comment": "math operators",
+                    "name": "keyword.operator.math.blang",
+                    "match": "(([+%]|(\\*(?!\\w)))(?!=))|(-(?!>))|(/(?!/))"
+                },
+				{
+                    "comment": "dot access",
+                    "name": "keyword.operator.access.dot.blang",
+                    "match": "\\.(?!\\.)"
+                },
+				{
+                    "comment": "colon",
+                    "name": "keyword.operator.key-value.blang",
+                    "match": ":(?!:)"
+                }
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.blang",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.blang",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"comment": "documentation comments",
+					"name": "comment.line.documentation.blang",
+					"match": "(///).*$",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.comment.blang"
+						}
+					}
+				},
+				{
+					"comment": "line comments",
+					"name": "comment.line.double-slash.blang",
+					"match": "(//).*$",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.comment.blang"
+						}
+					}
+				}
+			]
+		},
+		"block-comments": {
+			"patterns": [
+				{
+					"comment": "empty block comments",
+					"name": "comment.block.blang",
+					"match": "/\\*\\*/"
+				},
+				{
+					"comment": "block documentation comments",
+					"name": "comment.block.documentation.blang",
+					"begin": "/\\*\\*",
+					"end": "\\*/",
+					"patterns": [
+						{
+							"include": "#block-comments"
+						}
+					]
+				},
+				{
+					"comment": "block comments",
+					"name": "comment.block.blang",
+					"begin": "/\\*(?!\\*)",
+					"end": "\\*/",
+					"patterns": [
+						{
+							"include": "#block-comments"
+						}
+					]
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"comment": "constant declarations",
+					"match": "\\b(const)\\s+([a-z][A-Za-z0-9_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "storage.type.blang"
+						},
+						"2": {
+							"name": "constant.other.caps.blang"
+						}
+					}
+				},
+				{
+					"comment": "decimal integers and floats",
+					"name": "constant.numeric.decimal.blang",
+					"match": "\\b\\d[\\d_]*(\\.?)[\\d_]*(?:(e)([+-]?)([\\d_]+))?(f32|f64|i32|i64|i8|int|u32|u64|u8|uint)?\\b",
+					"captures": {
+						"1": {
+							"name": "punctuation.separator.dot.decimal.blang"
+						},
+						"2": {
+							"name": "keyword.operator.exponent.blang"
+						},
+						"3": {
+							"name": "keyword.operator.exponent.sign.blang"
+						},
+						"4": {
+							"name": "constant.numeric.decimal.exponent.mantissa.blang"
+						},
+						"5": {
+							"name": "entity.name.type.numeric.blang"
+						}
+					}
+				},
+				{
+					"comment": "hexadecimal integers",
+					"name": "constant.numeric.hex.blang",
+					"match": "\\b0x[\\da-f_]+(i32|i64|i8|int|u32|u64|u8|uint)?\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.numeric.blang"
+						}
+					}
+				},
+				{
+					"comment": "binary integers",
+					"name": "constant.numeric.bin.blang",
+					"match": "\\b0b[01_]+(i32|i64|i8|int|u32|u64|u8|uint)?\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.numeric.blang"
+						}
+					}
+				},
+				{
+					"comment": "booleans",
+					"name": "constant.language.bool.blang",
+					"match": "\\b(true|false)\\b"
+				}
+			]
+		},
+		"types": {
+            "patterns": [
+                {
+                    "comment": "numeric types",
+                    "match": "(?<![A-Za-z])(f32|f64|i32|i64|i8|int|u32|u64|u8|uint)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.type.numeric.blang"
+                        }
+                    }
+                },
+                {
+                    "comment": "primitive types",
+                    "name": "entity.name.type.primitive.blang",
+                    "match": "\\b(bool|str)\\b"
+                },
+                {
+                    "comment": "spec declarations",
+                    "match": "\\b(spec)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.declaration.spec.blang storage.type.blang"
+                        },
+                        "2": {
+                            "name": "entity.name.type.spec.blang"
+                        }
+                    }
+                },
+                {
+                    "comment": "struct declarations",
+                    "match": "\\b(struct)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.declaration.struct.blang storage.type.blang"
+                        },
+                        "2": {
+                            "name": "entity.name.type.struct.blang"
+                        }
+                    }
+                },
+                {
+                    "comment": "enum declarations",
+                    "match": "\\b(enum)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.declaration.enum.blang storage.type.blang"
+                        },
+                        "2": {
+                            "name": "entity.name.type.enum.blang"
+                        }
+                    }
+                },
+                {
+                    "comment": "types",
+                    "name": "entity.name.type.blang",
+                    "match": "\\b_?[A-Z][A-Za-z0-9_]*\\b(?!!)"
+                }
+            ]
+        },
+		"lvariables": {
+            "patterns": [
+                {
+                    "comment": "self",
+                    "name": "variable.language.self.blang",
+                    "match": "\\b[Ss]elf\\b"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "comment": "variables",
+                    "name": "variable.other.blang",
+                    "match": "\\b(?<!(?<!\\.)\\.)(?:r#(?!([Ss]elf)))?[a-z0-9_]+\\b"
+                }
+            ]
+        }
+	},
+	"scopeName": "source.blang"
+}

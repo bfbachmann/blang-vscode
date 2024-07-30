@@ -1,0 +1,25 @@
+{
+  "name": "blang",
+  "displayName": "Blang",
+  "description": "Support for the Blang programming langauge.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "blang",
+      "aliases": ["Blang", "blang"],
+      "extensions": [".bl"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "blang",
+      "scopeName": "source.blang",
+      "path": "./syntaxes/blang.tmLanguage.json"
+    }]
+  }
+}

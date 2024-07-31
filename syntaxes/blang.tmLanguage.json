@@ -394,7 +394,7 @@
 							"name": "punctuation.brackets.square.blang"
 						}
 					},
-					"end": "{",
+					"end": "\\}",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.brackets.curly.blang"
@@ -459,9 +459,6 @@
 							"include": "#comments"
 						},
 						{
-							"include": "#attributes"
-						},
-						{
 							"include": "#keywords"
 						},
 						{
@@ -508,9 +505,6 @@
 						},
 						{
 							"include": "#comments"
-						},
-						{
-							"include": "#attributes"
 						},
 						{
 							"include": "#keywords"

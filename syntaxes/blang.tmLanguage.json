@@ -322,8 +322,8 @@
 				},
 				{
 					"comment": "module use",
-					"name": "variable.other.blang",
-					"match": "\\b(@[a-zA-Z_]+[a-zA-Z0-9_]*)\\b"
+					"name": "entity.name.type.blang",
+					"match": "@([a-zA-Z_]+[a-zA-Z0-9_]*)"
 				}
 			]
 		}

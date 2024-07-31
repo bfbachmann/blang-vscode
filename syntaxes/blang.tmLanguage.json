@@ -284,6 +284,11 @@
 					"comment": "booleans",
 					"name": "constant.language.bool.blang",
 					"match": "\\b(true|false)\\b"
+				},
+				{
+					"comment": "null",
+					"name": "constant.language.null.blang",
+					"match": "\\bnull\\b"
 				}
 			]
 		},

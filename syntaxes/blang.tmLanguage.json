@@ -24,7 +24,49 @@
 			"include": "#lvariables"
 		},
 		{
+			"include": "#punctuation"
+		},
+		{
 			"include": "#variables"
+		},
+		{
+			"include": "#functions"
+		},
+		{
+			"comment": "use statements",
+			"name": "meta.use.blang",
+			"begin": "\\b(use)\\s",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.blang"
+				}
+			},
+			"end": ";",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.semi.blang"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#block-comments"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#punctuation"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#lvariables"
+				}
+			]
 		}
 	],
 	"repository": {
@@ -324,6 +366,201 @@
 					"comment": "module use",
 					"name": "entity.name.type.blang",
 					"match": "@([a-zA-Z_]+[a-zA-Z0-9_]*)"
+				}
+			]
+		},
+		"functions": {
+			"patterns": [
+				{
+					"comment": "function definition",
+					"name": "meta.function.definition.blang",
+					"begin": "\\b(fn)\\s+([A-Za-z0-9_]+)((\\()|(\\[))",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.fn.blang"
+						},
+						"2": {
+							"name": "entity.name.function.blang"
+						},
+						"4": {
+							"name": "punctuation.brackets.round.blang"
+						},
+						"5": {
+							"name": "punctuation.brackets.square.blang"
+						}
+					},
+					"end": "{",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.brackets.curly.blang"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#block-comments"
+						},
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#lvariables"
+						},
+						{
+							"include": "#constants"
+						},
+						{
+							"include": "#functions"
+						},
+						{
+							"include": "#punctuation"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#variables"
+						}
+					]
+				},
+				{
+					"comment": "function/method calls, chaining",
+					"name": "meta.function.call.blang",
+					"begin": "([A-Za-z0-9_]+)(\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function.blang"
+						},
+						"2": {
+							"name": "punctuation.brackets.round.blang"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.brackets.round.blang"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#block-comments"
+						},
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#attributes"
+						},
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#lvariables"
+						},
+						{
+							"include": "#constants"
+						},
+						{
+							"include": "#functions"
+						},
+						{
+							"include": "#punctuation"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#variables"
+						}
+					]
+				},
+				{
+					"comment": "function/method calls with generics",
+					"name": "meta.function.call.blang",
+					"begin": "([A-Za-z0-9_]+)(?=\\[.*\\]\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function.blang"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.brackets.round.blang"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#block-comments"
+						},
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#attributes"
+						},
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#lvariables"
+						},
+						{
+							"include": "#constants"
+						},
+						{
+							"include": "#functions"
+						},
+						{
+							"include": "#punctuation"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#variables"
+						}
+					]
+				}
+			]
+		},
+		"punctuation": {
+			"patterns": [
+				{
+					"comment": "comma",
+					"name": "punctuation.comma.blang",
+					"match": ","
+				},
+				{
+					"comment": "curly braces",
+					"name": "punctuation.brackets.curly.blang",
+					"match": "[{}]"
+				},
+				{
+					"comment": "parentheses, round brackets",
+					"name": "punctuation.brackets.round.blang",
+					"match": "[()]"
+				},
+				{
+					"comment": "semicolon",
+					"name": "punctuation.semi.blang",
+					"match": ";"
+				},
+				{
+					"comment": "square brackets",
+					"name": "punctuation.brackets.square.blang",
+					"match": "[\\[\\]]"
 				}
 			]
 		}

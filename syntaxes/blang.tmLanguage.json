@@ -27,10 +27,10 @@
 			"include": "#punctuation"
 		},
 		{
-			"include": "#variables"
+			"include": "#functions"
 		},
 		{
-			"include": "#functions"
+			"include": "#variables"
 		},
 		{
 			"comment": "use statements",
@@ -158,17 +158,6 @@
 				}
 			]
 		},
-		"strings": {
-			"name": "string.quoted.double.blang",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.blang",
-					"match": "\\\\."
-				}
-			]
-		},
 		"comments": {
 			"patterns": [
 				{
@@ -292,88 +281,6 @@
 				}
 			]
 		},
-		"types": {
-			"patterns": [
-				{
-					"comment": "numeric types",
-					"match": "(?<![A-Za-z])(f32|f64|i32|i64|i8|int|u32|u64|u8|uint)\\b",
-					"captures": {
-						"1": {
-							"name": "entity.name.type.numeric.blang"
-						}
-					}
-				},
-				{
-					"comment": "primitive types",
-					"name": "entity.name.type.primitive.blang",
-					"match": "\\b(bool|str)\\b"
-				},
-				{
-					"comment": "spec declarations",
-					"match": "\\b(spec)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
-					"captures": {
-						"1": {
-							"name": "keyword.declaration.spec.blang storage.type.blang"
-						},
-						"2": {
-							"name": "entity.name.type.spec.blang"
-						}
-					}
-				},
-				{
-					"comment": "struct declarations",
-					"match": "\\b(struct)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
-					"captures": {
-						"1": {
-							"name": "keyword.declaration.struct.blang storage.type.blang"
-						},
-						"2": {
-							"name": "entity.name.type.struct.blang"
-						}
-					}
-				},
-				{
-					"comment": "enum declarations",
-					"match": "\\b(enum)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
-					"captures": {
-						"1": {
-							"name": "keyword.declaration.enum.blang storage.type.blang"
-						},
-						"2": {
-							"name": "entity.name.type.enum.blang"
-						}
-					}
-				},
-				{
-					"comment": "types",
-					"name": "entity.name.type.blang",
-					"match": "\\b_?[A-Z][A-Za-z0-9_]*\\b(?!!)"
-				}
-			]
-		},
-		"lvariables": {
-			"patterns": [
-				{
-					"comment": "self",
-					"name": "variable.language.self.blang",
-					"match": "\\b[Ss]elf\\b"
-				}
-			]
-		},
-		"variables": {
-			"patterns": [
-				{
-					"comment": "variables",
-					"name": "variable.other.blang",
-					"match": "\\b(?<!(?<!\\.)\\.)(?:r#(?!([Ss]elf)))?[a-z0-9_]+\\b"
-				},
-				{
-					"comment": "module use",
-					"name": "entity.name.type.blang",
-					"match": "@([a-zA-Z_]+[a-zA-Z0-9_]*)"
-				}
-			]
-		},
 		"functions": {
 			"patterns": [
 				{
@@ -387,14 +294,14 @@
 						"2": {
 							"name": "entity.name.function.blang"
 						},
-						"4": {
+						"3": {
 							"name": "punctuation.brackets.round.blang"
 						},
-						"5": {
+						"4": {
 							"name": "punctuation.brackets.square.blang"
 						}
 					},
-					"end": "\\}",
+					"end": "(\\{)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.brackets.curly.blang"
@@ -534,6 +441,65 @@
 				}
 			]
 		},
+		"types": {
+			"patterns": [
+				{
+					"comment": "numeric types",
+					"match": "(?<![A-Za-z])(f32|f64|i32|i64|i8|int|u32|u64|u8|uint)\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.numeric.blang"
+						}
+					}
+				},
+				{
+					"comment": "primitive types",
+					"name": "entity.name.type.primitive.blang",
+					"match": "\\b(bool|str)\\b"
+				},
+				{
+					"comment": "spec declarations",
+					"match": "\\b(spec)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.declaration.spec.blang storage.type.blang"
+						},
+						"2": {
+							"name": "entity.name.type.spec.blang"
+						}
+					}
+				},
+				{
+					"comment": "struct declarations",
+					"match": "\\b(struct)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.declaration.struct.blang storage.type.blang"
+						},
+						"2": {
+							"name": "entity.name.type.struct.blang"
+						}
+					}
+				},
+				{
+					"comment": "enum declarations",
+					"match": "\\b(enum)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.declaration.enum.blang storage.type.blang"
+						},
+						"2": {
+							"name": "entity.name.type.enum.blang"
+						}
+					}
+				},
+				{
+					"comment": "types",
+					"name": "entity.name.type.blang",
+					"match": "\\b_?[A-Z][A-Za-z0-9_]*\\b(?!!)"
+				}
+			]
+		},
 		"punctuation": {
 			"patterns": [
 				{
@@ -560,6 +526,40 @@
 					"comment": "square brackets",
 					"name": "punctuation.brackets.square.blang",
 					"match": "[\\[\\]]"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.blang",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.blang",
+					"match": "\\\\."
+				}
+			]
+		},
+		"lvariables": {
+			"patterns": [
+				{
+					"comment": "self",
+					"name": "variable.language.self.blang",
+					"match": "\\b[Ss]elf\\b"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"comment": "variables",
+					"name": "variable.other.blang",
+					"match": "\\b(?<!(?<!\\.)\\.)[a-z0-9_]+\\b"
+				},
+				{
+					"comment": "module use",
+					"name": "entity.name.type.blang",
+					"match": "@([a-zA-Z_]+[a-zA-Z0-9_]*)"
 				}
 			]
 		}

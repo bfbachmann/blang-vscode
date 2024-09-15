@@ -230,7 +230,7 @@
 				{
 					"comment": "decimal integers and floats",
 					"name": "constant.numeric.decimal.blang",
-					"match": "\\b\\d[\\d_]*(\\.?)[\\d_]*(?:(e)([+-]?)([\\d_]+))?(f32|f64|i32|i64|i8|int|u32|u64|u8|uint)?\\b",
+					"match": "\\b\\d[\\d_]*(\\.?)[\\d_]*(?:(e)([+-]?)([\\d_]+))?(f32|f64|i16|i32|i64|i8|int|u16|u32|u64|u8|uint)?\\b",
 					"captures": {
 						"1": {
 							"name": "punctuation.separator.dot.decimal.blang"
@@ -252,7 +252,7 @@
 				{
 					"comment": "hexadecimal integers",
 					"name": "constant.numeric.hex.blang",
-					"match": "\\b0x[\\da-f_]+(i32|i64|i8|int|u32|u64|u8|uint)?\\b",
+					"match": "\\b0x[\\da-f_]+(i16|i32|i64|i8|int|u16|u32|u64|u8|uint)?\\b",
 					"captures": {
 						"1": {
 							"name": "entity.name.type.numeric.blang"
@@ -262,7 +262,7 @@
 				{
 					"comment": "binary integers",
 					"name": "constant.numeric.bin.blang",
-					"match": "\\b0b[01_]+(i32|i64|i8|int|u32|u64|u8|uint)?\\b",
+					"match": "\\b0b[01_]+(i16|i32|i64|i8|int|u16|u32|u64|u8|uint)?\\b",
 					"captures": {
 						"1": {
 							"name": "entity.name.type.numeric.blang"
@@ -445,7 +445,7 @@
 			"patterns": [
 				{
 					"comment": "numeric types",
-					"match": "(?<![A-Za-z])(f32|f64|i32|i64|i8|int|u32|u64|u8|uint)\\b",
+					"match": "(?<![A-Za-z])(f32|f64|i16|i32|i64|i8|int|u16|u32|u64|u8|uint)\\b",
 					"captures": {
 						"1": {
 							"name": "entity.name.type.numeric.blang"

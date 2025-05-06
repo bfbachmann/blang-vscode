@@ -90,6 +90,11 @@
 					"match": "\\b(const)\\b"
 				},
 				{
+					"comment": "static keyword",
+					"name": "storage.modifier.blang",
+					"match": "\\b(static)\\b"
+				},
+				{
 					"comment": "enum keyword",
 					"name": "keyword.declaration.enum.blang storage.type.blang",
 					"match": "\\b(enum)\\b"

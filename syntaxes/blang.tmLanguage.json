@@ -77,7 +77,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.blang",
-					"match": "\\b(if|else|match|case|loop|while|for|break|continue|return|from|yield)\\b"
+					"match": "\\b(if|else|match|loop|while|for|break|continue|return|from|yield)\\b"
 				},
 				{
 					"comment": "storage keywords",

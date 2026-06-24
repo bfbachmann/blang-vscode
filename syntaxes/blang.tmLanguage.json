@@ -127,12 +127,12 @@
 				{
 					"comment": "logical operators",
 					"name": "keyword.operator.logical.blang",
-					"match": "(and|or|!)(?!=)"
+					"match": "(&|\\||!)(?!=)"
 				},
 				{
 					"comment": "assignment operators",
 					"name": "keyword.operator.assignment.blang",
-					"match": "(\\+=|-=|\\*=|/=|%=|or=|and=|bls=|brs=|band=|bor=|bxor=)"
+					"match": "(\\+=|-=|\\*=|/=|%=|\\|=|&=|<<=|>>=|xor=)"
 				},
 				{
 					"comment": "single equal",
@@ -142,12 +142,12 @@
 				{
 					"comment": "comparison operators",
 					"name": "keyword.operator.comparison.blang",
-					"match": "(=(=)?(?!>)|!=|<=|~~|!~|(?<!=)>=)"
+					"match": "(=(=)?(?!>)|!=|<=|=~|!~|(?<!=)>=)"
 				},
 				{
 					"comment": "binary operators",
 					"name": "keyword.operator.comparison.blang",
-					"match": "(band|bor|bxor|bls|brs|band|bor|bxor|bnot)"
+					"match": "(&|\\||xor|<<|>>|&|\\||xor|~)"
 				},
 				{
 					"comment": "math operators",
@@ -236,7 +236,7 @@
 					}
 				},
 				{
-					"comment": "decimal integers and floats",
+					"comment": "decimal integers & floats",
 					"name": "constant.numeric.decimal.blang",
 					"match": "\\b\\d[\\d_]*(\\.?)[\\d_]*(?:(e)([+-]?)([\\d_]+))?(f32|f64|i16|i32|i64|i8|int|u16|u32|u64|u8|uint)?\\b",
 					"captures": {
